@@ -23,6 +23,11 @@ func (this *OrderController) Post() {
 	var ob models.Order
 	json.Unmarshal(this.Ctx.Input.RequestBody, &ob)
 	orderID := models.ProcessOrderInMongoDB(ob)
+	resp, err := http.Post("https://orderemail.azurewebsites.net/api/HttpTriggerCSharp1?code=message", "application/json", "{\"id\":\""+ob.OrderID+"\",\"Email\":\""+ob.EmailAddress+"\"}")
+		if err != nil {
+			// handle error
+		}
+		defer resp.Body.Close()
 	this.Data["json"] = map[string]string{"orderId": orderID}
 	this.ServeJSON()
 }
