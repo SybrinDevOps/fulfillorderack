@@ -8,6 +8,7 @@ import (
 	"github.com/astaxie/beego"
 	
 	"net/http"
+	"strings"
 )
 
 // Operations about order
