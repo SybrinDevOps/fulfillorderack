@@ -177,7 +177,8 @@ func init() {
 
 func ProcessOrderInMongoDB(order Order) (orderId string) {
 	log.Println("ProcessOrderInMongoDB: " + order.OrderID)
-
+	log.Println("Initial Order ID : ",order.OrderID)
+	log.Println("Initial Email: ",order.EmailAddress)
 	mongoDBSessionCopy := mongoDBSession.Copy()
 	defer mongoDBSessionCopy.Close()
 
