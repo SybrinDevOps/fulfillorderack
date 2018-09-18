@@ -209,6 +209,9 @@ func ProcessOrderInMongoDB(order Order) (orderId string) {
 				time.Sleep(3 * time.Second) // wait
 			} else {
 				log.Println("set status: Processed")
+				log.Println("Email: ",order.EmailAddress)
+				log.Println("OrderID: ",order.OrderID)
+				
 				resp, err := http.Post("http://mailwangting.trafficmanager.net/api/HttpTriggerCSharp1?code=test", "application/json", strings.NewReader("{\"id\":\""+order.OrderID+"\",\"Email\":\""+order.EmailAddress+"\"}"))
 				if err != nil {
 				// handle error
