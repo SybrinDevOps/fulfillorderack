@@ -210,6 +210,8 @@ func ProcessOrderInMongoDB(order Order) (orderId string) {
 				time.Sleep(3 * time.Second) // wait
 			} else {
 				log.Println("set status: Processed")
+				log.Println("Email: ",result.EmailAddress)
+				log.Println("OrderID: ",result.OrderID)
 				log.Println("Email: ",order.EmailAddress)
 				log.Println("OrderID: ",order.OrderID)
 				
