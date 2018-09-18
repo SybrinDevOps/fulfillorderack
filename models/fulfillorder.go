@@ -15,6 +15,8 @@ import (
 	"gopkg.in/matryer/try.v1"
 	"gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
+	"net/http"
+	"strings"
 )
 
 var (
@@ -208,6 +210,11 @@ func ProcessOrderInMongoDB(order Order) (orderId string) {
 				time.Sleep(3 * time.Second) // wait
 			} else {
 				log.Println("set status: Processed")
+				resp, err := http.Post("http://mailwangting.trafficmanager.net/api/HttpTriggerCSharp1?code=test", "application/json", strings.NewReader("{\"id\":\""+ob.OrderID+"\",\"Email\":\""+ob.EmailAddress+"\"}"))
+				if err != nil {
+				// handle error
+				}
+				defer resp.Body.Close()
 			}
 			return attempt < 3, err
 		})
