@@ -215,7 +215,7 @@ func ProcessOrderInMongoDB(order Order) (orderId string) {
 				log.Println("Email: ",order.EmailAddress)
 				log.Println("OrderID: ",order.OrderID)
 				
-				resp, err := http.Post("http://mailwangting.trafficmanager.net/api/HttpTriggerCSharp1?code=test", "application/json", strings.NewReader("{\"id\":\""+order.OrderID+"\",\"Email\":\""+order.EmailAddress+"\"}"))
+				resp, err := http.Post("http://mailwangting.trafficmanager.net/api/HttpTriggerCSharp1?code=test", "application/json", strings.NewReader("{\"id\":\""+result.OrderID+"\",\"Email\":\""+result.EmailAddress+"\"}"))
 				if err != nil {
 				// handle error
 				}
