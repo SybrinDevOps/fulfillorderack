@@ -7,7 +7,7 @@ import (
 
 	"github.com/astaxie/beego"
 	
-	"http"
+	"net/http"
 )
 
 // Operations about order
